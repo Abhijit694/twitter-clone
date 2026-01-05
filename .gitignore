@@ -1,0 +1,26 @@
+# --- Root Level ---
+node_modules/
+.DS_Store
+.env
+*.log
+
+# --- Backend Specific ---
+backend/node_modules/
+backend/.env
+backend/npm-debug.log*
+
+# --- Frontend Specific ---
+frontend/node_modules/
+frontend/.env
+frontend/build/
+frontend/dist/
+frontend/.pnp
+frontend/.pnp.js
+
+# --- Testing & Coverage ---
+coverage/
+frontend/coverage/
+
+# --- Local Configuration ---
+.vscode/
+.idea/
