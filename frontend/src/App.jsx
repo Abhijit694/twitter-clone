@@ -1,12 +1,11 @@
-import Home from "./components/Home"
-import Layout from "./components/Layout"
+import Body from "./components/Body"
 
 function App() {
 
 
   return (
     <>
-      <Layout/>
+      <Body/>
     </>
   )
 }
