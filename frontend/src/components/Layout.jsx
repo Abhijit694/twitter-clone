@@ -5,6 +5,7 @@ import RightSidebar from './RightSidebar'
 import Sidebar from './Sidebar'
 import TopNavbar from './TopNavbar'
 import Feed from './Feed'
+import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
 
@@ -25,7 +26,7 @@ const Layout = () => {
             </div>
             {/* Feed */}
             <div>
-              <Feed/>
+              <Outlet/>
             </div>
             {/* Bottom Nav */}
             <div className='md:hidden fixed bottom-0 left-0 right-0 z-10'>
@@ -42,7 +43,7 @@ const Layout = () => {
             </div>
             {/* Feed */}
             <div className='flex flex-1'>
-              <Feed/>
+              <Outlet/>
             </div>
             {/* Right Sidebar - for large divices */}
             <div className='w-[30%] hidden lg:block top-0 right-0'>
