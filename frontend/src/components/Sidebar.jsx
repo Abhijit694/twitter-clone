@@ -51,7 +51,7 @@ const Sidebar = () => {
             <div className="h-15 w-12 md:p-2 xl:w-[90%] xl:p-3 flex md:justify-center xl:justify-normal items-center gap-2 hover:bg-gray-200 hover:rounded-full cursor-pointer">
                 <Avatar googleId="118096717852922241760" size="40" name="Abhijit Nayak" round={true} />
                 <div className="hidden xl:flex flex-col">
-                    <span className="text-sm">Name Surname</span>
+                    <span className="text-sm font-bold">Name Surname</span>
                     <span className="text-sm">@username</span>
                 </div>
             </div>

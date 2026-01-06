@@ -3,8 +3,6 @@ import { BiRepost } from "react-icons/bi";
 import { IoHeartOutline,IoHeart } from "react-icons/io5";
 import { PiBookmarkSimple,PiBookmarkSimpleBold } from "react-icons/pi";
 import Avatar from "react-avatar"
-import { PiDotLight } from "react-icons/pi";
-import { PiDotOutlineFill } from "react-icons/pi";
 import { LuDot } from "react-icons/lu";
 
 
