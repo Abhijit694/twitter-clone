@@ -5,10 +5,12 @@ import RightSidebar from './RightSidebar'
 import Sidebar from './Sidebar'
 import TopNavbar from './TopNavbar'
 import Feed from './Feed'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 
 const Layout = () => {
 
+  const location = useLocation()
+  const hideTopNavbarRoutes = ['/profile']
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -18,7 +20,11 @@ const Layout = () => {
           <div className='md:hidden'>
             {/* TopNavbar with profile icon*/}
             <div>
-              <TopNavbar setDrawerOpen={setDrawerOpen}/>
+              {
+                !(hideTopNavbarRoutes.includes(location.pathname)) && (
+                  <TopNavbar setDrawerOpen={setDrawerOpen}/>
+                )
+              }
             </div>
             {/* Slide-in Sidebar */}
             <div className='md:hidden'>
