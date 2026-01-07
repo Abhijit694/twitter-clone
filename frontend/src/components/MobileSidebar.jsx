@@ -4,8 +4,18 @@ import { PiBookmarkSimple } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BiLogIn } from "react-icons/bi";
 import Avatar from 'react-avatar'
+import { useNavigate } from "react-router-dom";
 
 const MobileSidebar = ({isOpen,onClose}) => {
+
+  const navigate = useNavigate()
+
+  const sidebarHandler = (sidebarMenuText) => {
+    if(sidebarMenuText === 'Profile'){
+      navigate('/profile')
+      onClose()
+    }
+  }
 
   const drawerItems = [
     {icon: BsPerson, label: "Profile"},
@@ -46,7 +56,7 @@ const MobileSidebar = ({isOpen,onClose}) => {
             <div className="flex flex-col gap-4 mt-4">
               {
                 drawerItems.map((item) => (
-                  <nav key={item.label} className="flex items-center gap-3" >
+                  <nav key={item.label} onClick={() => sidebarHandler(item.label)} className="flex items-center gap-3" >
                     <item.icon size='33px' />
                     <span className="text-xl font-semibold">{item.label}</span>
                   </nav>
