@@ -7,8 +7,17 @@ import { PiBookmarkSimple,PiBookmarkSimpleBold } from "react-icons/pi";
 import { BsPerson,BsPersonFill } from "react-icons/bs";
 import { RiQuillPenAiLine } from "react-icons/ri";
 import Avatar from 'react-avatar'
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+
+    const navigate = useNavigate()
+
+    const sidebarHandler = (navMenuText) => {
+        if(navMenuText === "Profile"){
+            navigate('/profile')
+        }
+    }
     const navItems = [
         {icon: <GoHome size="27px"/>, label: "Home" },
         {icon: <IoSearchOutline size="27px"/>, label: "Explore" },
@@ -31,7 +40,7 @@ const Sidebar = () => {
                     <div className="flex flex-col">
                         {
                             navItems.map((item) => (
-                                <nav key={item.label} className="w-fit flex items-center gap-3 md:p-2.5 xl:py-2.5 xl:px-5 hover:bg-gray-200 rounded-full cursor-pointer">
+                                <nav key={item.label} onClick={() => sidebarHandler(item.label)} className="w-fit flex items-center gap-3 md:p-2.5 xl:py-2.5 xl:px-5 hover:bg-gray-200 rounded-full cursor-pointer">
                                     {item.icon}
                                     <span className="text-[20px] hidden xl:block">{item.label}</span>
                                 </nav>
