@@ -44,7 +44,7 @@ const Layout = () => {
           {/* Large Screen View ( md,lg,xl,2xl ) - Hidden on Small devices */}
           <div className='hidden md:flex'>
             {/* Sidebar - for medium amd large devices */}
-            <div className='w-[7%] pt-4 lg:pt- xl:w-[22%] xl:py-3'>
+            <div className='w-[10%] pt-4 xl:w-[22%] xl:py-3'>
               <Sidebar/>
             </div>
             {/* Feed */}
