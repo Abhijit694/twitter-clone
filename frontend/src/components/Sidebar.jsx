@@ -8,24 +8,38 @@ import { BsPerson,BsPersonFill } from "react-icons/bs";
 import { RiQuillPenAiLine } from "react-icons/ri";
 import Avatar from 'react-avatar'
 import { useNavigate } from "react-router-dom";
+import useBreakpoint from "./hooks/useBreakpoint";
 
 const Sidebar = () => {
 
     const navigate = useNavigate()
+    const screens = useBreakpoint()
+
+    const iconSizes = {
+        md: '29px',
+        lg: '28px',
+        xl: '28px'
+    }
+    
+    const getIconSize = (sizeMap) => {
+        if(screens.md) return sizeMap.md
+        if(screens.lg) return sizeMap.lg
+        if(screens.xl) return sizeMap.xl
+    }
+    const navItems = [
+        {icon: <GoHome size={getIconSize(iconSizes)}/>, label: "Home" },
+        {icon: <IoSearchOutline size={getIconSize(iconSizes)}/>, label: "Explore" },
+        {icon: <IoNotificationsOutline size={getIconSize(iconSizes)}/>, label: "Notifications" },
+        {icon: <TbMail size={getIconSize(iconSizes)} className="stroke-[1.3]"/>, label: "Messages" },
+        {icon: <PiBookmarkSimple size={getIconSize(iconSizes)}/>, label: "Bookmarks" },
+        {icon: <BsPerson size={getIconSize(iconSizes)}/>, label: "Profile" }
+    ]
 
     const sidebarHandler = (navMenuText) => {
         if(navMenuText === "Profile"){
             navigate('/profile')
         }
     }
-    const navItems = [
-        {icon: <GoHome size="27px"/>, label: "Home" },
-        {icon: <IoSearchOutline size="27px"/>, label: "Explore" },
-        {icon: <IoNotificationsOutline size="27px"/>, label: "Notifications" },
-        {icon: <TbMail size="27px" className="stroke-[1.3]"/>, label: "Messages" },
-        {icon: <PiBookmarkSimple size="27px"/>, label: "Bookmarks" },
-        {icon: <BsPerson size="27px"/>, label: "Profile" }
-    ]
   return (
     <>
         <div className="h-[96vh] border-r border-gray-200 flex flex-col justify-between">
