@@ -29,18 +29,21 @@ const Profile = () => {
         </div>
 
         {/* Profile section - cover & profile photo,username,followers & following */}
-        <div className="w-full h-85 relative bg-green-300">
-            <div className="w-full h-35 bg-gray-300"></div>
-            <div className="absolute rounded-full bg-red-300 size-25 top-20 left-5">
+        <div className="w-full h-auto relative bg-green-300">
+            <div className="w-full h-35 md:h-50 bg-gray-300"></div>
+            <div className="absolute rounded-full bg-red-300 size-25 md:size-35 top-20 md:top-29 left-5">
 
             </div>
             <div className="p-3">
-                <div className="w-full h-12 flex flex-row-reverse">
-                    <button className="w-fit h-9 py-0 px-3 text-sm font-semibold rounded-full border cursor-pointer">Set up profile</button>
+                <div className="w-full h-12 md:px-10 flex flex-row-reverse">
+                    <button className="w-fit h-9 py-0 px-3 text-sm font-semibold rounded-full border border-gray-400 cursor-pointer hover:bg-gray-300">Set up profile</button>
                 </div>
                 <div className="w-full flex flex-col mb-3">
                     <div className="text-xl font-bold">Name Surname</div>
-                    <div className="text-sm text-gray-500">@username</div>
+                    <div className="text-base text-gray-500">@username</div>
+                </div>
+                <div className="w-full flex flex-col mb-3">
+                    <div>Bio comes here</div>
                 </div>
                 <div className="w-full flex items-center gap-2 mb-3">
                     <SlCalender size='16' className="text-gray-500"/>
