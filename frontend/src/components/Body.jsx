@@ -1,6 +1,6 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Layout from './Layout'
-import Login from './Login'
+import SignUpAndSignIn from './SignUpAndSignIn'
 import Feed from './Feed'
 import Profile from './Profile'
 
@@ -23,7 +23,7 @@ const Body = () => {
         },
         {
             path:'/login',
-            element:<Login/>
+            element:<SignUpAndSignIn/>
         }
     ])
 
