@@ -10,7 +10,7 @@ const useBreakpoint = (breakpoints = {}) => {
     xxl: false
   })
 
-  const defalutBreakPoints = {
+  const defaultBreakPoints = {
     sm: 640,
     md: 768,
     lg: 1024,
@@ -19,7 +19,7 @@ const useBreakpoint = (breakpoints = {}) => {
   }
 
   useEffect(() => {
-    const mergedBreakpoints = {...defalutBreakPoints,...breakpoints}
+    const mergedBreakpoints = {...defaultBreakPoints,...breakpoints}
 
     const handleResize = () => {
         const width = window.innerWidth
