@@ -28,7 +28,7 @@ const SignUpAndSignIn = () => {
             <div className="mb-2 lg:flex lg:justify-center lg:items-center lg:w-1/2 lg:h-full">
                 <RiTwitterXLine size={getIconSize(iconSizeValues)}/>
             </div>
-            <div className="p-25 lg:w-1/2">
+            <div className="lg:p-18 lg:w-1/2">
                 <div className="flex flex-col lg:justify-center lg:w-full lg:h-full">
                     <div className="text-5xl md:text-[75px] font-bold my-9 md:my-15">
                         Happening now
