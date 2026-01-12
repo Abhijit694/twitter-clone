@@ -18,13 +18,15 @@ const Sidebar = () => {
     const iconSizes = {
         md: '29px',
         lg: '28px',
-        xl: '28px'
+        xl: '28px',
+        xxl: '28px'
     }
     
     const getIconSize = (sizeMap) => {
         if(screens.md) return sizeMap.md
         if(screens.lg) return sizeMap.lg
         if(screens.xl) return sizeMap.xl
+        if(screens.xxl) return sizeMap.xxl
     }
     const navItems = [
         {icon: <GoHome size={getIconSize(iconSizes)}/>, label: "Home" },
