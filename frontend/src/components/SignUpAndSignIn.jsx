@@ -34,25 +34,32 @@ const SignUpAndSignIn = () => {
         <ModalBox
             isOpen={isSignUpModalOpen}
             onClose={() => setIsSignUpModalOpen(false)}
+            title={"Create your account"}
         >
-            <div className="mx-auto w-[64%]">
-                <div className="text-3xl font-bold mb-6">Create your account</div>
+            <div>
                 <InputBox id={"name"} type={"text"} label={"Name"}/>
                 <InputBox id={"email"} type={"email"} label={"Email"}/>
                 <InputBox id={"username"} type={"text"} label={"Username"}/>
                 <InputBox id={"password"} type={"text"} label={"Password"}/>
                 <InputBox id={"confirm password"} type={"text"} label={"Confirm password"}/>
                 <div className="w-full mt-4 flex items-center justify-center">
-                    <button className="w-full py-3 bg-black text-white text-xl font-bold rounded-full cursor-pointer">Sign Up</button>
+                    <button className="w-full py-2 bg-black text-white text-xl font-bold rounded-full cursor-pointer">Sign Up</button>
                 </div>
             </div>
         </ModalBox>
         <ModalBox
             isOpen={isSignInModalOpen}
             onClose={() => setIsSignInModalOpen(false)}
+            title={"Sign in to X"}
             
         >
-            <div>hello</div>
+            <div>
+                <InputBox id={"username"} type={"text"} label={"Phone,email address or username"}/>
+                <InputBox id={"password"} type={"text"} label={"Password"}/>
+                <div className="w-full mt-4 flex items-center justify-center">
+                    <button className="w-full py-2 bg-black text-white text-xl font-bold rounded-full cursor-pointer">Login</button>
+                </div>
+            </div>
         </ModalBox>
 
         <div className='p-4 lg:h-screen lg:p-0'>
