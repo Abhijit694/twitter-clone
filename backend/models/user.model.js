@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema(
         password: {
             type: String,
             required: true
+        },
+        followers: {
+            type: Array,
+            default: []
+        },
+        following: {
+            type: Array,
+            default: []
         }
     },
     { timestamps:true }
