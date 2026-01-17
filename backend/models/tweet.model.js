@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import User from "./user.model";
 
 
 const tweetSchema = mongoose.Schema(
@@ -8,20 +7,28 @@ const tweetSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        like: {
-            type: Array,
+        likes: {
+            type: [{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }],
             default: []
         },
         userId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: User
+            ref: "User",
+            required: true
         },
         bookmarks: {
-            type: Array,
+            type: [{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Users"
+            }],
             default: []
         },
 
-    }
+    },
+    {timestamps: true}
 )
 
 const Tweet = mongoose.model("Tweet",tweetSchema)
