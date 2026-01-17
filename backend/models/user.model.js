@@ -21,11 +21,17 @@ const userSchema = new mongoose.Schema(
             required: true
         },
         followers: {
-            type: Array,
+            type: [{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }],
             default: []
         },
         following: {
-            type: Array,
+            type: [{
+                type: mongoose.Schema.types.ObjectId,
+                ref:"User"
+            }],
             default: []
         }
     },
