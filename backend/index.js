@@ -1,12 +1,12 @@
 import dotenv from "dotenv"
+dotenv.config()
+
+
 import express from "express"
 import connectDB from "./config/database.js"
 import cookieParser from "cookie-parser"
 import userRouter from "./routes/user.routes.js"
 
-dotenv.config({
-    path:".env"
-})
 
 const app = express()
 
