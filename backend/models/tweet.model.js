@@ -22,7 +22,7 @@ const tweetSchema = mongoose.Schema(
         bookmarks: {
             type: [{
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Users"
+                ref: "User"
             }],
             default: []
         },

@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
         },
         following: {
             type: [{
-                type: mongoose.Schema.types.ObjectId,
+                type: mongoose.Schema.Types.ObjectId,
                 ref:"User"
             }],
             default: []
