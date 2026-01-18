@@ -2,6 +2,7 @@ import dotenv from "dotenv"
 import express from "express"
 import connectDB from "./config/database.js"
 import cookieParser from "cookie-parser"
+import userRouter from "./routes/user.routes.js"
 
 dotenv.config({
     path:".env"
@@ -17,6 +18,17 @@ app.use(cookieParser())
 // Connect to database
 connectDB()
 
+
+// API
+app.use("/api/v1/user",userRouter)
+
+
+app.get("/home",(req,res) => {
+    res.status(200).json({
+        message: "Coming from backend",
+        success: true
+    })
+})
 
 
 // Start server
