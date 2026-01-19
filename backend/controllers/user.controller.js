@@ -91,7 +91,7 @@ export const login = async (req,res) => {
         return res.status(200).cookie("token",token,{
                 httpOnly:true,
                 sameSite:"strict",
-                secure: process.env.NODE_ENV === "production",
+                // secure: process.env.NODE_ENV === "production",
                 maxAge:1*24*60*60*1000
             })
             .json({
@@ -103,6 +103,21 @@ export const login = async (req,res) => {
         console.log(error)
         return res.status(500).json({
             message: "Internal Server Error",
+            success: false
+        })
+    }
+}
+
+export const logout = async(_,res) => {
+    try {
+        return res.clearCookie("token").status(200).json({
+            message: "Logged out successfully",
+            success: true
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            message: "Internal server error",
             success: false
         })
     }
