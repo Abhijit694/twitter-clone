@@ -17,11 +17,19 @@ export const register = async (req,res) => {
                 success: false
             })
         }
-        const user = await User.findOne({ email: trimmedEmail })
-        if(user){
+        const [existingUser,existingUsername] = await Promise.all([
+            User.findOne({email: trimmedEmail}),
+            User.findOne({username: trimmedUsername})
+        ])
+        if(existingUser){
             return res.status(409).json({
                 message: "User already exist with this email Id.",
-                user,
+                success: false
+            })
+        }
+        if(existingUsername){
+            return res.status(409).json({
+                message: "Username taken.",
                 success: false
             })
         }
