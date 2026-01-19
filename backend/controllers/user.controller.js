@@ -9,9 +9,9 @@ export const register = async (req,res) => {
 
         // Trimmed input fields
         const trimmedName = name.trim()
-        const tirmmedUsername = username.trim()
+        const trimmedUsername = username.trim()
         const trimmedEmail = email.trim()
-        if(!trimmedName || !tirmmedUsername || !trimmedEmail || !password || !confirmPassword){
+        if(!trimmedName || !trimmedUsername || !trimmedEmail || !password || !confirmPassword){
             return res.status(400).json({
                 message: "All fields are required.",
                 success: false
@@ -34,7 +34,7 @@ export const register = async (req,res) => {
         const hashedPassword = await bcryptjs.hash(password,10)
         await User.create({
             name: trimmedName,
-            username: tirmmedUsername,
+            username: trimmedUsername,
             email: trimmedEmail,
             password: hashedPassword
         })
