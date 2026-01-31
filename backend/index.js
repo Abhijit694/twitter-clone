@@ -6,6 +6,7 @@ import express from "express"
 import connectDB from "./config/database.js"
 import cookieParser from "cookie-parser"
 import userRouter from "./routes/user.routes.js"
+import tweetRouter from "./routes/tweet.routes.js"
 
 
 const app = express()
@@ -21,6 +22,7 @@ connectDB()
 
 // API
 app.use("/api/v1/user",userRouter)
+app.use("/api/v1/tweet",tweetRouter)
 
 
 app.get("/home",(req,res) => {
