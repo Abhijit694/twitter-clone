@@ -63,3 +63,33 @@ export const deleteTweet = async (req,res) => {
         })
     }
 }
+
+export const likeOrDislike = async (req,res) => {
+    try {
+        const loggedInUserId = req.id   // This id comes from isAuthenticated middleware
+        const tweetId = req.params.id   // Tweet that has to be like or disliked
+        const tweet = await Tweet.findById(tweetId)
+        if(!tweet){
+            return res.status(404).json({
+                message: "Tweet not found",
+                success: false
+            })
+        }
+        const isLiked = tweet.likes.some(id => id.toString() === loggedInUserId.toString())
+        await Tweet.findByIdAndUpdate(
+            tweetId,
+            isLiked ? { $pull: {likes: loggedInUserId}} : { $addToSet: {likes: loggedInUserId}}
+        )
+        return res.status(200).json({
+            success: true,
+            message: isLiked ? "Like removed" : "Tweet liked"
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        })
+        
+    }
+}
