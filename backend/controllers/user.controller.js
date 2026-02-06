@@ -151,3 +151,26 @@ export const bookmarkTweet = async (req,res) => {
         })
     }
 }
+
+export const getProfile = async (req,res) => {
+    try {
+        const id = req.params.id    // id of the profile user want to view
+        const user = await User.findById(id).select('-password -email -__v -createdAt -updatedAt')
+        if(!user){
+            return res.status(404).json({
+                message: "User not found",
+                success: false
+            })
+        }
+        return res.status(200).json({
+            user,
+            success: true
+        })
+    } catch (error) {
+        console.log("Get profile error:", error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        })
+    }
+}
