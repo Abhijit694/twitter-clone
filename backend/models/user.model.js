@@ -33,7 +33,13 @@ const userSchema = new mongoose.Schema(
                 ref:"User"
             }],
             default: []
-        }
+        },
+        bookmarks: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Tweet"
+            }
+        ]
     },
     { timestamps:true }
 )
