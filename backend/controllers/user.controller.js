@@ -122,3 +122,32 @@ export const logout = async(_,res) => {
         })
     }
 }
+
+export const bookmarkTweet = async (req,res) => {
+    try {
+        const loggedInUserId = req.id   // id coming from isAuthenticated middleware
+        const tweetId = req.params.id
+        const user = await User.findById(loggedInUserId)
+        if(user.bookmarks.includes(tweetId)){
+            //remove
+            await User.findByIdAndUpdate(loggedInUserId,{ $pull: {bookmarks: tweetId}})
+            return res.status(200).json({
+                message: "Removed from bookmarks",
+                success: true
+            })
+        }else{
+            // bookmark
+            await User.findByIdAndUpdate(loggedInUserId,{ $addToSet: {bookmarks: tweetId}})
+            return res.status(200).json({
+                message: "Tweet bookmarked",
+                success: true
+            })
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        })
+    }
+}
