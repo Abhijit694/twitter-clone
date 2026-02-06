@@ -19,13 +19,6 @@ const tweetSchema = mongoose.Schema(
             ref: "User",
             required: true
         },
-        bookmarks: {
-            type: [{
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "User"
-            }],
-            default: []
-        },
 
     },
     {timestamps: true}
