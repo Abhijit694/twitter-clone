@@ -1,6 +1,7 @@
 import bcryptjs from "bcryptjs"
 import User from "../models/user.model.js"
 import jwt from "jsonwebtoken"
+import mongoose from "mongoose"
 
 
 export const register = async (req,res) => {
@@ -155,7 +156,7 @@ export const bookmarkTweet = async (req,res) => {
 export const getProfile = async (req,res) => {
     try {
         const id = req.params.id    // id of the profile user want to view
-        const user = await User.findById(id).select('-password -email -__v -createdAt -updatedAt')
+        const user = await User.findById(id).select('-password -email -__v -updatedAt')
         if(!user){
             return res.status(404).json({
                 message: "User not found",
@@ -168,6 +169,48 @@ export const getProfile = async (req,res) => {
         })
     } catch (error) {
         console.log("Get profile error:", error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        })
+    }
+}
+
+export const suggestedUsers = async (req,res) => {
+    try {
+        const loggedInUserId = new mongoose.Types.ObjectId(req.id)      // id comes from isAuthenticated middleware
+        const limit = 5
+        // Get the logged-in user's following list
+        const loggedInUser = await User.findById(loggedInUserId).select('following')
+        const otherUsers = await User.aggregate([
+            {
+                $match: {
+                    _id: {
+                        $ne: loggedInUserId,                // Exclude self
+                        $nin: loggedInUser.following        // Exclude already followed users
+                    }
+                }
+            },
+            {
+                $sample: {size: limit}      // Random selection
+            },
+            {
+                $project: {
+                    password: 0,
+                    email: 0,
+                    updatedAt: 0,
+                    __v: 0
+                }
+            }
+        ])
+        // you could add a $lookup stage to check for mutual connections
+
+        return res.status(200).json({
+            otherUsers,     // I have to consider adding pagination (skip + limit or cursor-based) when want to "load more"
+            success: true
+        })
+    } catch (error) {
+        console.log("Suggested users error:",error);
         return res.status(500).json({
             message: "Internal server error",
             success: false
