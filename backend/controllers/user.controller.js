@@ -217,3 +217,55 @@ export const suggestedUsers = async (req,res) => {
         })
     }
 }
+
+export const followOrUnfollow = async (req, res) => {
+    try {
+        const loggedInUserId = req.id
+        const userIdToFollow = req.params.id
+        
+        if (loggedInUserId === userIdToFollow) {
+            return res.status(400).json({
+                message: "You cannot follow/unfollow yourself",
+                success: false
+            })
+        }
+
+        const loggedInUser = await User.findById(loggedInUserId)
+        const userToFollow = await User.findById(userIdToFollow)
+        
+        if (!loggedInUser || !userToFollow) {
+            return res.status(404).json({
+                message: "User not found",
+                success: false
+            })
+        }
+
+        const isFollowing = userToFollow.followers.includes(loggedInUserId)
+        
+        if (isFollowing) {
+            await Promise.all([
+                User.updateOne({_id: userIdToFollow}, {$pull: {followers: loggedInUserId}}),
+                User.updateOne({_id: loggedInUserId}, {$pull: {following: userIdToFollow}})
+            ])
+            return res.status(200).json({
+                message: `You unfollowed ${userToFollow.username}`,
+                success: true
+            })
+        } else {
+            await Promise.all([
+                User.updateOne({_id: userIdToFollow}, {$addToSet: {followers: loggedInUserId}}),
+                User.updateOne({_id: loggedInUserId}, {$addToSet: {following: userIdToFollow}})
+            ])
+            return res.status(200).json({
+                message: `You followed ${userToFollow.username}`,
+                success: true
+            })
+        }
+    } catch (error) {
+        console.error("Follow or unfollow error:", error)
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        })
+    }
+}
